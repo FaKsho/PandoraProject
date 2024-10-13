@@ -78,19 +78,18 @@ public class BlockEvents implements Listener {
 
             // ORE DE DIAMANTE
             case DIAMOND_ORE:
-            case DEEPSLATE_DIAMOND_ORE: // TODO esto no funciona???
-                if(block.getType() == Material.DIAMOND_ORE) {
+            case DEEPSLATE_DIAMOND_ORE:
+                // TODO PLANTEARME bajar probabilidad de los creepers
+                if(!new Random().nextBoolean()) {
 
-                    if(!new Random().nextBoolean()) {
-
-                        e.getPlayer()
-                                .getWorld()
-                                .spawnEntity(e.getPlayer().getLocation(), EntityType.CREEPER);
-                        e.getPlayer()
-                                .getWorld()
-                                .spawnEntity(e.getPlayer().getLocation(), EntityType.LIGHTNING_BOLT);
-                    }
+                    e.getPlayer()
+                            .getWorld()
+                            .spawnEntity(e.getPlayer().getLocation(), EntityType.CREEPER);
+                    e.getPlayer()
+                            .getWorld()
+                            .spawnEntity(e.getPlayer().getLocation(), EntityType.LIGHTNING_BOLT);
                 }
+
             break;
 
             // --------------------------------------------------------------------------- //
