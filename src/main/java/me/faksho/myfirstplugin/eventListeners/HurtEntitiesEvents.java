@@ -67,25 +67,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            case ENDERMAN:
-                if(entity.getType() == EntityType.ENDERMAN) {
-
-                    server.broadcastMessage("LA REBELDÍA CONTRA EL RÉGIMEN NO SERÁ TOLERADA");
-                    List<Entity> nearbyEntities = entity.getNearbyEntities(3, 3, 3);
-
-                    for (Entity entityPlayer : nearbyEntities) {
-
-                        if (entityPlayer.getType() == EntityType.PLAYER) {
-
-                            Player player = (Player) entityPlayer;
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 50));
-                        }
-                    }
-                }
-            break;
-
-            // ------------------------------------------------------------------------------------- //
-
             case PIG:
 
                 if (entity.getType() == EntityType.PIG) {
@@ -102,6 +83,7 @@ public class HurtEntitiesEvents implements Listener {
                         Arrow arrow = (Arrow) e.getDamager();
                         LivingEntity shooter = (LivingEntity) arrow.getShooter();
 
+                        assert shooter != null;
                         protectPigs(shooter);
                     }
                 }
@@ -118,9 +100,8 @@ public class HurtEntitiesEvents implements Listener {
 
                         world.spawnEntity(entity.getLocation(), EntityType.BEE);
 
-                        entity.setPassenger(
-                                world.spawnEntity(entity.getLocation(), EntityType.WITHER_SKELETON)
-                        );
+                        Entity witherSkeleton = world.spawnEntity(entity.getLocation(), EntityType.WITHER_SKELETON);
+                        entity.addPassenger(witherSkeleton);
                     }
                 }
             break;
@@ -186,6 +167,42 @@ public class HurtEntitiesEvents implements Listener {
             break;
 
 
+
+            ////////////  //////////// MOBS HOSTILES ///////////// ////////////
+
+            case ENDERMAN:
+                if(entity.getType() == EntityType.ENDERMAN) {
+
+                    server.broadcastMessage("LA REBELDÍA CONTRA EL RÉGIMEN NO SERÁ TOLERADA");
+                    List<Entity> nearbyEntities = entity.getNearbyEntities(3, 3, 3);
+
+                    for (Entity entityPlayer : nearbyEntities) {
+
+                        if (entityPlayer.getType() == EntityType.PLAYER) {
+
+                            Player player = (Player) entityPlayer;
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 50));
+                        }
+                    }
+                }
+                break;
+
+            // ------------------------------------------------------------------------------------- //
+
+            case SPIDER:
+            case CAVE_SPIDER:
+
+                Player player = (Player) damager;
+                LivingEntity spider = (LivingEntity) entity;
+
+                player.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS,
+                        100,
+                        1));
+
+                spider.addPassenger(player);
+
+
+            break;
         }
 
     }

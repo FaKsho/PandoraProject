@@ -99,7 +99,6 @@ public class BlockEvents implements Listener {
 
                 for(int i=0; i < 5; i++) {
 
-                    // TODO hacer que spawneen con bichos encima, pero unificar esto con lo de HurEntitiesEvents
                     world.spawnEntity(
                             block.getLocation(),
                             EntityType.BEE);
