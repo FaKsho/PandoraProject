@@ -1,0 +1,18 @@
+name: MyPlugin
+version: '${project.version}'
+main: me.faksho.myfirstplugin.MyPlugin
+api-version: '1.17'
+
+# Commands
+commands:
+  die:
+    description: Te vas a morir cabron
+    usage: /<command>
+  god:
+    description: UwU
+    aliases:
+      - mododelpapu
+  feed:
+    description: Dejas el hambre atrás
+    aliases:
+      - chavitotengohambre
