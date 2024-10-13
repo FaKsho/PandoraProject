@@ -3,6 +3,7 @@ version: '${project.version}'
 main: me.faksho.myfirstplugin.MyPlugin
 api-version: '1.17'
 
+#TODO ver que hacer con esto xddd
 # Commands
 commands:
   die:

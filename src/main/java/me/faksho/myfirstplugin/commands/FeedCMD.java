@@ -1,4 +1,4 @@
-package me.faksho.myfirstplugin.Commands;
+package me.faksho.myfirstplugin.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

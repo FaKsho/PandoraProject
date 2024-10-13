@@ -1,4 +1,4 @@
-package me.faksho.myfirstplugin.EventListeners;
+package me.faksho.myfirstplugin.eventListeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
@@ -17,10 +17,10 @@ public class SpawnEvents implements Listener {
         // PHANTOMS CON SORPRESITAS
         if (entityType == EntityType.PHANTOM) {
 
-            Entity phantomEntity = e.getEntity();
-            phantomEntity.getServer().broadcastMessage(ChatColor.RED +""+ ChatColor.BOLD +
-                    "Virgencita de guadalupe, ¡Nos invaden los marcianos!");
 
+            Entity phantomEntity = e.getEntity();
+            phantomEntity.getServer().broadcastMessage(ChatColor.BLUE +""+ ChatColor.BOLD +
+                    "Virgencita de guadalupe, ¡Nos invaden los marcianos!");
 
             // No voy a volver a entender esto luego
             phantomEntity
@@ -32,6 +32,8 @@ public class SpawnEvents implements Listener {
         }
 
 
+        // --------------------------------------------------------------------------- //
+
         // MENSAJE PERSONALIZADO DE INVOCACIÓN DE WITHER
         if(entityType == EntityType.WITHER) {
 
@@ -39,6 +41,8 @@ public class SpawnEvents implements Listener {
                     "Se avecina un infierno inminente...");
         }
 
+
+        // --------------------------------------------------------------------------- //
 
 
     }

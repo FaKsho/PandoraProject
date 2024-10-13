@@ -1,4 +1,4 @@
-package me.faksho.myfirstplugin.EventListeners;
+package me.faksho.myfirstplugin.eventListeners;
 
 import org.bukkit.event.Listener;
 

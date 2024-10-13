@@ -1,4 +1,4 @@
-package me.faksho.myfirstplugin.EventListeners;
+package me.faksho.myfirstplugin.eventListeners;
 
 
 import org.bukkit.Location;
@@ -22,84 +22,18 @@ public class HurtEntitiesEvents implements Listener {
 
 
     @EventHandler
-    public void onPlayerBreak(BlockBreakEvent e) {
-
-        System.out.println("PLAYER HARVEST EVENT TRIGGERED");
-
-        Player p = e.getPlayer();
-        Block b = e.getBlock();
-
-        if(p.getInventory().contains(Material.CHICKEN)) {
-            p.sendMessage("No chicken pliz");
-            e.setCancelled(true);
-
-        }
-
-        System.out.println(b.getBlockData().getAsString());
-    }
-
-    // OVEJITA BRILLANTE
-    @EventHandler
-    public void onShearSheep(PlayerShearEntityEvent e) {
-
-        Entity entity = e.getEntity();
-
-        entity.setGlowing(true);
-    }
-
-    // FLECHA RAYO
-    @EventHandler
-    public void onArrowHits(ProjectileHitEvent event) {
-
-        Projectile projectile = event.getEntity();
-        System.out.println("Projectile event");
-
-        if(projectile.getType() == EntityType.ARROW) {
-
-            if(projectile.getShooter() instanceof Player){
-                System.out.println("Arrow");
-                projectile.getWorld().spawnEntity(projectile.getLocation(), EntityType.LIGHTNING_BOLT);
-            }
-        }
-    }
-
-    // ANTI MOVIMIENTO CON WEBO
-    @EventHandler
-    public void onPlayerMove(PlayerMoveEvent e) {
-
-        Player p = e.getPlayer();
-
-        // NO EGG
-
-        if(p.getInventory().contains(Material.EGG)) {
-            //p.sendMessage("Soltá el webo puto");
-            //p.setWalkSpeed(-1);
-            //Block b = p.getWorld().getBlockAt(p.getLocation());
-            //b.setType(Material.COBWEB);
-
-            for(int i = 0; i < 1; i++) {
-
-                p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 100, 5));
-
-            }
-
-        } else {
-            p.setWalkSpeed(0.2f);
-        }
-    }
-
-    //
-    @EventHandler
     public void onEntityDamageEntity(EntityDamageByEntityEvent e) {
 
         Entity entity = e.getEntity();
+        EntityType entityType = entity.getType();
+
         Entity damager = e.getDamager();
         Location damagerLocation = damager.getLocation();
 
-        EntityType entityType = entity.getType();
+        // ------------------------------------------//------------------------------------------- //
+
         switch (entityType) {
 
-            // PROTECCIÓN DE GALLINAS
             case CHICKEN:
 
                 if(entity.getType() == EntityType.CHICKEN) {
@@ -113,7 +47,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // PROTECCIÓN DE VACAS
             case COW:
                 if(entity.getType() == EntityType.COW) {
 
@@ -129,7 +62,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // PROTECCIÓN ENDERMAN
             case ENDERMAN:
                 if(entity.getType() == EntityType.ENDERMAN) {
 
@@ -149,7 +81,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // PROTECCIÓN DE CHANCHITOS
             case PIG:
 
                 if (entity.getType() == EntityType.PIG) {
@@ -173,7 +104,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // PROTEGER ABEJITAS
             case BEE:
 
                 if(entity.getType() == EntityType.BEE) {
@@ -194,7 +124,6 @@ public class HurtEntitiesEvents implements Listener {
 
             case AXOLOTL:
 
-                // PROTEGER AJOLOTES
                 if(entity.getType() == EntityType.AXOLOTL) {
 
                     if(damager.getType() == EntityType.PLAYER) {
@@ -207,7 +136,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // CONEJOS BLANCOS
             case RABBIT:
                 if(entity.getType() == EntityType.RABBIT) {
                     Rabbit rabbit = (Rabbit) entity;
@@ -225,7 +153,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // EFECTOS
             case SHEEP:
 
 
@@ -235,7 +162,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // TORTUGAS
             case TURTLE:
 
                 ((LivingEntity)damager).addPotionEffect(
@@ -249,7 +175,6 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            // GATITOS
             case CAT:
 
 

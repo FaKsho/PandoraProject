@@ -1,12 +1,9 @@
 package me.faksho.myfirstplugin;
 
-import me.faksho.myfirstplugin.Commands.DieCMD;
-import me.faksho.myfirstplugin.Commands.FeedCMD;
-import me.faksho.myfirstplugin.Commands.GodmodeCMD;
-import me.faksho.myfirstplugin.EventListeners.BlockEvents;
-import me.faksho.myfirstplugin.EventListeners.HurtEntitiesEvents;
-import me.faksho.myfirstplugin.EventListeners.OreEvents;
-import me.faksho.myfirstplugin.EventListeners.Tuto;
+import me.faksho.myfirstplugin.commands.DieCMD;
+import me.faksho.myfirstplugin.commands.FeedCMD;
+import me.faksho.myfirstplugin.commands.GodmodeCMD;
+import me.faksho.myfirstplugin.eventListeners.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class MyPlugin extends JavaPlugin {
@@ -18,10 +15,16 @@ public final class MyPlugin extends JavaPlugin {
         System.out.println("Plugin started.");
 
         // Registrar listeners
+        // TODO: podría leer las clases que están en el paquete <<eventListeners>> y cargarlas automáticamente.
         getServer().getPluginManager().registerEvents(new HurtEntitiesEvents(), this);
         getServer().getPluginManager().registerEvents(new Tuto(), this);
-        getServer().getPluginManager().registerEvents(new OreEvents(), this);
         getServer().getPluginManager().registerEvents(new BlockEvents(), this);
+        getServer().getPluginManager().registerEvents(new MovementEvents(), this);
+        getServer().getPluginManager().registerEvents(new SpawnEvents(), this);
+        getServer().getPluginManager().registerEvents(new VillagerEvents(), this);
+
+        getServer().getPluginManager().registerEvents(new ExtraEvents(), this);
+
 
         // Registrar comandos
         getCommand("god").setExecutor(new GodmodeCMD());

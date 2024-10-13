@@ -1,8 +1,6 @@
-package me.faksho.myfirstplugin.EventListeners;
+package me.faksho.myfirstplugin.eventListeners;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Color;
-import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
