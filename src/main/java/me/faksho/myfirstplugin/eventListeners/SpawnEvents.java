@@ -23,6 +23,7 @@ public class SpawnEvents implements Listener {
                     "Virgencita de guadalupe, ¡Nos invaden los marcianos!");
 
             // No voy a volver a entender esto luego
+            // TODO arreglar deprecated
             phantomEntity
                 .setPassenger(
                         phantomEntity.getWorld().spawnEntity(

@@ -158,7 +158,7 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            case SHEEP:
+            case SHEEP: // TODO ovejas
 
 
 
@@ -180,7 +180,7 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            case CAT:
+            case CAT: // TODO gatitos
 
 
             break;

@@ -22,6 +22,8 @@ public final class MyPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MovementEvents(), this);
         getServer().getPluginManager().registerEvents(new SpawnEvents(), this);
         getServer().getPluginManager().registerEvents(new VillagerEvents(), this);
+        getServer().getPluginManager().registerEvents(new BedEvents(), this);
+
 
         getServer().getPluginManager().registerEvents(new ExtraEvents(), this);
 

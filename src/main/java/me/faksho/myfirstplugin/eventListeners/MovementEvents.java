@@ -10,7 +10,8 @@ import org.bukkit.potion.PotionEffectType;
 
 public class MovementEvents implements Listener {
 
-    // ANTI MOVIMIENTO CON WEBO
+    // WITHER EFFECT AL TENER HUEVOS EN EL INVENTARIO
+    // TODO mover esto a una sección de eventos de inventario
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
 

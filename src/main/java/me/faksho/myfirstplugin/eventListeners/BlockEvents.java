@@ -78,7 +78,7 @@ public class BlockEvents implements Listener {
 
             // ORE DE DIAMANTE
             case DIAMOND_ORE:
-            case DEEPSLATE_DIAMOND_ORE:
+            case DEEPSLATE_DIAMOND_ORE: // TODO esto no funciona???
                 if(block.getType() == Material.DIAMOND_ORE) {
 
                     if(!new Random().nextBoolean()) {
