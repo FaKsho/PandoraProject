@@ -1,8 +1,11 @@
 package me.faksho.myfirstplugin.eventListeners;
 
+import jdk.javadoc.internal.doclint.HtmlTag;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockType;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -80,24 +83,45 @@ public class BlockEvents implements Listener {
 
         // ORE DE DIAMANTE
         Block block = e.getBlock();
-        System.out.println(block.getType());
+        Material blockType = block.getType();
 
-        if(block.getType() == Material.DIAMOND_ORE) {
+        World world = block.getWorld();
 
-            if(!new Random().nextBoolean()) {
+        switch (blockType) {
 
-                e.getPlayer()
-                        .getWorld()
-                        .spawnEntity(e.getPlayer().getLocation(), EntityType.CREEPER);
-                e.getPlayer()
-                        .getWorld()
-                        .spawnEntity(e.getPlayer().getLocation(), EntityType.LIGHTNING_BOLT);
-            }
+            case DIAMOND_ORE:
+            case DEEPSLATE_DIAMOND_ORE:
+                if(block.getType() == Material.DIAMOND_ORE) {
+
+                    if(!new Random().nextBoolean()) {
+
+                        e.getPlayer()
+                                .getWorld()
+                                .spawnEntity(e.getPlayer().getLocation(), EntityType.CREEPER);
+                        e.getPlayer()
+                                .getWorld()
+                                .spawnEntity(e.getPlayer().getLocation(), EntityType.LIGHTNING_BOLT);
+                    }
+                }
+            break;
+
+            case BEE_NEST:
+
+                for(int i=0; i < 5; i++) {
+
+                    world.spawnEntity(
+                            block.getLocation(),
+                            EntityType.BEE);
+                }
+
+
         }
+
+
 
         // --------------------------------------------------------------------------- //
 
-
+        // PANAL DE ABEJAS
 
 
     }
