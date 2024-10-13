@@ -3,6 +3,8 @@ package me.faksho.myfirstplugin.eventListeners;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Server;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -30,6 +32,9 @@ public class HurtEntitiesEvents implements Listener {
         Entity damager = e.getDamager();
         Location damagerLocation = damager.getLocation();
 
+        World world = entity.getWorld();
+        Server server = entity.getServer();
+
         // ------------------------------------------//------------------------------------------- //
 
         switch (entityType) {
@@ -39,8 +44,8 @@ public class HurtEntitiesEvents implements Listener {
                 if(entity.getType() == EntityType.CHICKEN) {
 
                     for(int i = 0; i < 10; i++) {
-                        entity.getWorld().spawnEntity(damagerLocation, EntityType.CREEPER, true);
-                        entity.getWorld().spawnEntity(damagerLocation, EntityType.LIGHTNING_BOLT);
+                        world.spawnEntity(damagerLocation, EntityType.CREEPER, true);
+                        world.spawnEntity(damagerLocation, EntityType.LIGHTNING_BOLT);
                     }
                 }
             break;
@@ -53,7 +58,7 @@ public class HurtEntitiesEvents implements Listener {
                     // TODO mover la cantidad a otro lado
                     for(int i = 0; i < 5; i++) {
 
-                        entity.getWorld().spawnEntity(
+                        world.spawnEntity(
                                 damager.getLocation(),
                                 EntityType.EVOKER_FANGS);
                     }
@@ -65,7 +70,7 @@ public class HurtEntitiesEvents implements Listener {
             case ENDERMAN:
                 if(entity.getType() == EntityType.ENDERMAN) {
 
-                    entity.getServer().broadcastMessage("LA REVELDÍA CONTRA EL RÉGIMEN NO SERÁ TOLERADA");
+                    server.broadcastMessage("LA REBELDÍA CONTRA EL RÉGIMEN NO SERÁ TOLERADA");
                     List<Entity> nearbyEntities = entity.getNearbyEntities(3, 3, 3);
 
                     for (Entity entityPlayer : nearbyEntities) {
@@ -111,10 +116,10 @@ public class HurtEntitiesEvents implements Listener {
                     //Player player = (Player) damager;
                     if(damager.getType() == EntityType.PLAYER){
 
-                        entity.getWorld().spawnEntity(entity.getLocation(), EntityType.BEE);
+                        world.spawnEntity(entity.getLocation(), EntityType.BEE);
 
                         entity.setPassenger(
-                                entity.getWorld().spawnEntity(entity.getLocation(), EntityType.WITHER_SKELETON)
+                                world.spawnEntity(entity.getLocation(), EntityType.WITHER_SKELETON)
                         );
                     }
                 }
@@ -145,7 +150,7 @@ public class HurtEntitiesEvents implements Listener {
 
                         // TODO mover la cantidad a otro lado
                         for(int i = 0; i < 5; i++) {
-                            entity.getWorld().spawnEntity(damagerLocation, EntityType.TNT_MINECART);
+                            world.spawnEntity(damagerLocation, EntityType.TNT_MINECART);
                         }
                     }
                 }

@@ -3,6 +3,7 @@ package me.faksho.myfirstplugin.eventListeners;
 import jdk.javadoc.internal.doclint.HtmlTag;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockType;
@@ -18,15 +19,16 @@ import java.util.Random;
 
 public class BlockEvents implements Listener {
 
-
     // * EVENTOS DE PONER BLOQUES
     @EventHandler
     public void onPlayerPlaceBlock(BlockPlaceEvent e) {
 
-
-        //  WITHER SKULLS CUSTOM MESSAGES
+        Block block = e.getBlock();
         Material blockPlaced = e.getBlockPlaced().getType();
 
+        World world = block.getWorld();
+
+        //  WITHER SKULLS CUSTOM MESSAGES
         if (blockPlaced == Material.WITHER_SKELETON_SKULL || blockPlaced == Material.WITHER_SKELETON_WALL_SKULL) {
 
             if (e.getBlockAgainst().getType() == Material.SOUL_SAND) {
@@ -67,21 +69,6 @@ public class BlockEvents implements Listener {
     @EventHandler
     public void onPlayerBreakBlock(BlockBreakEvent e) {
 
-        /*
-         * TODO repensar esto o moverlo a otro lado
-
-        // No romper bloques con pollo encima
-        Player p = e.getPlayer();
-
-        if(p.getInventory().contains(Material.CHICKEN)) {
-            p.sendMessage("No chicken pliz");
-            e.setCancelled(true);
-        }
-         */
-
-        // --------------------------------------------------------------------------- //
-
-        // ORE DE DIAMANTE
         Block block = e.getBlock();
         Material blockType = block.getType();
 
@@ -89,6 +76,7 @@ public class BlockEvents implements Listener {
 
         switch (blockType) {
 
+            // ORE DE DIAMANTE
             case DIAMOND_ORE:
             case DEEPSLATE_DIAMOND_ORE:
                 if(block.getType() == Material.DIAMOND_ORE) {
@@ -105,23 +93,34 @@ public class BlockEvents implements Listener {
                 }
             break;
 
+            // --------------------------------------------------------------------------- //
+
+            // PANAL DE ABEJAS
             case BEE_NEST:
 
                 for(int i=0; i < 5; i++) {
 
+                    // TODO hacer que spawneen con bichos encima, pero unificar esto con lo de HurEntitiesEvents
                     world.spawnEntity(
                             block.getLocation(),
                             EntityType.BEE);
                 }
-
-
         }
-
-
 
         // --------------------------------------------------------------------------- //
 
-        // PANAL DE ABEJAS
+        /*
+         * TODO repensar esto o moverlo a otro lado
+
+        // No romper bloques con pollo encima
+        Player p = e.getPlayer();
+
+        if(p.getInventory().contains(Material.CHICKEN)) {
+            p.sendMessage("No chicken pliz");
+            e.setCancelled(true);
+        }
+         */
+
 
 
     }
