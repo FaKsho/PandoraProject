@@ -253,13 +253,23 @@ public class HurtEntitiesEvents implements Listener {
 
             case CREEPER:
 
+                System.out.println(damager.getName());
+
                 if(damager.getType() == EntityType.ARROW ||
                         damager.getType() == EntityType.SPECTRAL_ARROW){
 
+                    System.out.println("creepa");
+
                     ((LivingEntity)entity).addPotionEffect(new PotionEffect(
                        PotionEffectType.SPEED,
-                       100,
-                       1
+                       50,
+                       3
+                    ));
+
+                    ((LivingEntity)entity).addPotionEffect(new PotionEffect(
+                            PotionEffectType.GLOWING,
+                            50,
+                            1
                     ));
                 }
 
