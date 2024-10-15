@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+import org.checkerframework.checker.signature.qual.BinaryNameWithoutPackage;
 
 public class SpawnEvents implements Listener {
 
@@ -74,7 +75,16 @@ public class SpawnEvents implements Listener {
                 Entity elderGuardian = world.spawnEntity(entity.getLocation(),
                         EntityType.ELDER_GUARDIAN);
 
-                entity.addPassenger(elderGuardian);
+                elderGuardian.teleport(entity.getLocation());
+
+                Bukkit.getScheduler().runTaskTimer(MyPlugin.getPlugin(), () -> {
+                    if (!elderGuardian.isValid() || !entity.isValid()) {
+                        elderGuardian.remove();
+                        return;
+                    }
+                    elderGuardian.teleport(entity.getLocation().add(0, 10, 0));
+
+                }, 0L, 1L);
 
             break;
 
@@ -96,6 +106,8 @@ public class SpawnEvents implements Listener {
 
         }
     }
+
+
 
 }
 
