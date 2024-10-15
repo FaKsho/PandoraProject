@@ -65,7 +65,6 @@ public class ProjectileEvents implements Listener {
                 }
         }
 
-
     }
 
 }

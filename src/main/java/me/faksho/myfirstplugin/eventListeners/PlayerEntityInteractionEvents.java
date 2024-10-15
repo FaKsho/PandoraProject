@@ -56,12 +56,12 @@ public class PlayerEntityInteractionEvents implements Listener {
 
             case SILVERFISH:
 
+                // TODO esto va en otro lado con otro evento
                 if(player.getInventory().getItemInMainHand().getType() != Material.STICK){
                     return;
                 }
 
                 Silverfish silverfish = (Silverfish) entityClicked;
-
 
                 new BukkitRunnable() {
                     @Override
@@ -75,7 +75,7 @@ public class PlayerEntityInteractionEvents implements Listener {
                             Location playerLocation = player.getLocation();
                             silverfish.setTarget(player);
                             silverfish.setInvulnerable(true);
-                            silverfish.teleport(silverfish.getLocation().add(playerLocation.getDirection().multiply(1)));
+                            silverfish.teleport(silverfish.getLocation().add(playerLocation.getDirection().multiply(0.3)));
                         } else {
                             this.cancel(); // Detiene la tarea si el silverfish o el jugador no están vivos
                         }

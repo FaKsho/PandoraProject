@@ -204,10 +204,13 @@ public class HurtEntitiesEvents implements Listener {
             break;
 
 
+            // ------------------------------------------------------------------------------------- //
+
+
             case SKELETON:
+            case WITHER_SKELETON:
 
-                Skeleton skeleton = (Skeleton) entity;
-
+                LivingEntity skeleton = (LivingEntity) entity;
 
                 if(damager.getType() == EntityType.ARROW ||
                         damager.getType() == EntityType.SPECTRAL_ARROW){
@@ -224,7 +227,6 @@ public class HurtEntitiesEvents implements Listener {
                         double offsetZ = (Math.random() * 20) - 10;
 
                         Location baseLocation = skeleton.getLocation().add(offsetX, 0, offsetZ);
-
                         Location newLocation = baseLocation.clone();
 
                         for (int y = baseLocation.getBlockY()+5; y > 0; y--) {
@@ -238,10 +240,29 @@ public class HurtEntitiesEvents implements Listener {
                                 teleported = true;
                                 break;
                             }
-                            newLocation.subtract(0, 1, 0);
+                            //newLocation.subtract(0, 1, 0);
                         }
                     }
                 }
+
+                break;
+
+
+            // ------------------------------------------------------------------------------------- //
+
+
+            case CREEPER:
+
+                if(damager.getType() == EntityType.ARROW ||
+                        damager.getType() == EntityType.SPECTRAL_ARROW){
+
+                    ((LivingEntity)entity).addPotionEffect(new PotionEffect(
+                       PotionEffectType.SPEED,
+                       100,
+                       1
+                    ));
+                }
+
 
                 break;
         }
