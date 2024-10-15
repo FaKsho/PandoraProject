@@ -2,13 +2,11 @@ package me.faksho.myfirstplugin.eventListeners;
 
 import me.faksho.myfirstplugin.MyPlugin;
 import me.faksho.myfirstplugin.util.ParticlesUtil;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
@@ -28,8 +26,12 @@ public class PlayerEntityInteractionEvents implements Listener {
         Player player = event.getPlayer();
 
         World world = player.getWorld();
+        EntityType entityType = entityClicked.getType();
 
-        if(entityClicked.getType() == EntityType.COW) {
+
+        switch (entityType){
+
+        case COW:
             if(player.getInventory().getItemInMainHand().getType() == Material.BUCKET) {
 
                 ((LivingEntity)entityClicked).addPotionEffect(
@@ -46,20 +48,41 @@ public class PlayerEntityInteractionEvents implements Listener {
                         world
                 );
 
-                /*
-                for(int i = 0; i < 1000; i++){
-                    world.spawnParticle(Particle.CLOUD, entityClicked.getLocation(), 20);
-                }
-
-                 */
-
-
 
 
             }
+
+            break;
+
+            case SILVERFISH:
+
+                if(player.getInventory().getItemInMainHand().getType() != Material.STICK){
+                    return;
+                }
+
+                Silverfish silverfish = (Silverfish) entityClicked;
+
+
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+
+                        silverfish.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 1));
+                        silverfish.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, PotionEffect.INFINITE_DURATION, 1));
+
+                        if (!silverfish.isDead() && player.isOnline()) {
+                            silverfish.setGlowing(true);
+                            Location playerLocation = player.getLocation();
+                            silverfish.setTarget(player);
+                            silverfish.setInvulnerable(true);
+                            silverfish.teleport(silverfish.getLocation().add(playerLocation.getDirection().multiply(1)));
+                        } else {
+                            this.cancel(); // Detiene la tarea si el silverfish o el jugador no están vivos
+                        }
+                    }
+                }.runTaskTimer(MyPlugin.getPlugin(), 0, 20); // Repite cada segundo (20 ticks)
+
         }
-
-
 
     }
 }

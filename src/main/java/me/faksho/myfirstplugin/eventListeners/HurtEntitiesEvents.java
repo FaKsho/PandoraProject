@@ -1,10 +1,8 @@
 package me.faksho.myfirstplugin.eventListeners;
 
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Server;
-import org.bukkit.World;
+import me.faksho.myfirstplugin.util.ParticlesUtil;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -204,6 +202,48 @@ public class HurtEntitiesEvents implements Listener {
 
 
             break;
+
+
+            case SKELETON:
+
+                Skeleton skeleton = (Skeleton) entity;
+
+
+                if(damager.getType() == EntityType.ARROW ||
+                        damager.getType() == EntityType.SPECTRAL_ARROW){
+                    e.setCancelled(true);
+
+                    world.playSound(entity, Sound.ENTITY_ENDERMAN_TELEPORT, 3, 1);
+
+                    boolean teleported = false;
+                    int maxAttempts = 10;
+
+                    for (int i = 0; i < maxAttempts && !teleported; i++) {
+
+                        double offsetX = (Math.random() * 20) - 10;
+                        double offsetZ = (Math.random() * 20) - 10;
+
+                        Location baseLocation = skeleton.getLocation().add(offsetX, 0, offsetZ);
+
+                        Location newLocation = baseLocation.clone();
+
+                        for (int y = baseLocation.getBlockY()+5; y > 0; y--) {
+                            newLocation.setY(y);
+
+                            if (world.getBlockAt(newLocation).getType().isSolid() &&
+                                world.getBlockAt(newLocation.add(0, 1, 0)).getType() == Material.AIR &&
+                                world.getBlockAt(newLocation.add(0, 2, 0)).getType() == Material.AIR) {
+
+                                skeleton.teleport(newLocation.subtract(0, 2, 0));
+                                teleported = true;
+                                break;
+                            }
+                            newLocation.subtract(0, 1, 0);
+                        }
+                    }
+                }
+
+                break;
         }
 
     }
