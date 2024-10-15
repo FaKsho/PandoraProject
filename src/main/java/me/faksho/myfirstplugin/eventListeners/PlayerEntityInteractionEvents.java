@@ -20,7 +20,7 @@ public class PlayerEntityInteractionEvents implements Listener {
     private static MyPlugin plugin = MyPlugin.getPlugin();
 
     @EventHandler
-    public void onPlayerInteractEntities(PlayerInteractEntityEvent event) { // Buen nombre de método eh
+    public void onPlayerInteractEntities(PlayerInteractEntityEvent event) {
 
         Entity entityClicked = event.getRightClicked();
         Player player = event.getPlayer();
@@ -56,7 +56,7 @@ public class PlayerEntityInteractionEvents implements Listener {
 
             case SILVERFISH:
 
-                // TODO esto va en otro lado con otro evento
+                // TODO esto tiene que ir otro lado con otro evento
                 if(player.getInventory().getItemInMainHand().getType() != Material.STICK){
                     return;
                 }

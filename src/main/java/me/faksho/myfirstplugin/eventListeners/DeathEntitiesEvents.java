@@ -21,6 +21,8 @@ public class DeathEntitiesEvents implements Listener {
 
         World world = entity.getWorld();
 
+        Random random = new Random();
+
         switch (entityType) {
 
             case EVOKER:
@@ -35,7 +37,7 @@ public class DeathEntitiesEvents implements Listener {
             case ZOMBIE_VILLAGER:
 
 
-                if(new Random().nextInt(100) < 40) {
+                if(random.nextInt(100) < 40) {
 
                     world.createExplosion(entity.getLocation(),
                             1.5f,

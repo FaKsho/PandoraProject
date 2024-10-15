@@ -10,6 +10,8 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Random;
+
 public class HurtEntitiesEvents implements Listener {
 
 
@@ -24,6 +26,8 @@ public class HurtEntitiesEvents implements Listener {
 
         World world = entity.getWorld();
         Server server = entity.getServer();
+
+        Random random = new Random();
 
         // ------------------------------------------//------------------------------------------- //
 
@@ -47,7 +51,6 @@ public class HurtEntitiesEvents implements Listener {
 
                     // TODO mover la cantidad a otro lado
                     for(int i = 0; i < 5; i++) {
-
                         world.spawnEntity(
                                 damager.getLocation(),
                                 EntityType.EVOKER_FANGS);
@@ -129,9 +132,12 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            case SHEEP: // TODO ovejas
+            case SHEEP:
 
-                world.spawnEntity(entity.getLocation(), EntityType.CAVE_SPIDER);
+                if(random.nextInt(100) <= 25){
+                    world.spawnEntity(entity.getLocation(), EntityType.CAVE_SPIDER);
+                }
+
 
             break;
 

@@ -28,6 +28,8 @@ public class BlockEvents implements Listener {
 
         World world = block.getWorld();
 
+        Random random = new Random();
+
         //  WITHER SKULLS CUSTOM MESSAGES
         if (blockPlaced == Material.WITHER_SKELETON_SKULL || blockPlaced == Material.WITHER_SKELETON_WALL_SKULL) {
 
@@ -44,7 +46,7 @@ public class BlockEvents implements Listener {
                 e.getPlayer()
                         .getServer()
                         .broadcastMessage(ChatColor.GREEN + "" + ChatColor.BOLD +
-                            quotes.get(new Random().nextInt(quotes.size())));
+                            quotes.get(random.nextInt(quotes.size())));
             }
         }
 
@@ -56,13 +58,9 @@ public class BlockEvents implements Listener {
     }
 
 
-
-
-
     // ----------------------------------//--------------------------------------- //
-
-
-
+    // ----------------------------------//--------------------------------------- //
+    // ----------------------------------//--------------------------------------- //
 
 
     // * EVENTOS DE ROMPER BLOQUES
@@ -75,13 +73,15 @@ public class BlockEvents implements Listener {
 
         World world = block.getWorld();
 
+        Random random = new Random();
+
         switch (blockType) {
 
             // ORE DE DIAMANTE
             case DIAMOND_ORE:
             case DEEPSLATE_DIAMOND_ORE:
-                // TODO PLANTEARME bajar probabilidad de los creepers
-                if(!new Random().nextBoolean()) {
+
+                if(random.nextInt(100) <= 15) {
 
                     e.getPlayer()
                             .getWorld()
@@ -94,7 +94,7 @@ public class BlockEvents implements Listener {
             break;
 
             // --------------------------------------------------------------------------- //
-            // TODO terminal
+            // TODO terminar
             case COAL_ORE:
             case DEEPSLATE_COAL_ORE:
 
@@ -106,7 +106,7 @@ public class BlockEvents implements Listener {
             case STONE:
             case DEEPSLATE:
 
-                if(new Random().nextInt(100) == 1) {
+                if(random.nextInt(100) == 1) {
                     world.spawnEntity(player.getLocation(), EntityType.SILVERFISH);
                 }
 
@@ -116,9 +116,7 @@ public class BlockEvents implements Listener {
             // --------------------------------------------------------------------------- //
             // PANAL DE ABEJAS
             case BEE_NEST:
-
                 for(int i=0; i < 5; i++) {
-
                     world.spawnEntity(
                             block.getLocation(),
                             EntityType.BEE);

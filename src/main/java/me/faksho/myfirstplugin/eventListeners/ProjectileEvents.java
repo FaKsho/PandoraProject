@@ -11,8 +11,6 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.security.KeyStore;
-import java.util.List;
 import java.util.Random;
 
 public class ProjectileEvents implements Listener {
@@ -26,6 +24,7 @@ public class ProjectileEvents implements Listener {
         Entity damager = (Entity) projectile.getShooter();
         Entity hitEntity = event.getHitEntity();
 
+        Random random = new Random();
 
         switch (entityType) {
 
@@ -34,18 +33,15 @@ public class ProjectileEvents implements Listener {
                 Location projectileLocation = projectile.getLocation();
                 World world = projectileLocation.getWorld();
 
-
                 if (world != null) {
-                    // Generar partículas para simular el efecto del sonic boom
+
                     world.spawnParticle(Particle.SONIC_BOOM, projectileLocation, 10, 0.5, 0.5, 0.5, 0.1);
 
-                    // Reproducir el sonido del Warden
                     world.playSound(projectileLocation, Sound.ENTITY_WARDEN_SONIC_BOOM, 1.0f, 1.0f);
 
-                    // Aplicar daño a las entidades cercanas
-                    if(hitEntity instanceof Player) {
-                        Player player = (Player) hitEntity;
-                        player.damage(19.0);
+                    if(hitEntity instanceof LivingEntity) {
+                        LivingEntity livingEntity = (LivingEntity) hitEntity;
+                        livingEntity.damage(19.0);
                     }
 
                 }
@@ -57,13 +53,19 @@ public class ProjectileEvents implements Listener {
             case ARROW:
                 if(damager instanceof Skeleton) {
 
-                    if(new Random().nextInt(100) < 20) {
+                    if(random.nextInt(100) < 20) {
                         ((LivingEntity)hitEntity).addPotionEffect(
                                 new PotionEffect(PotionEffectType.SLOWNESS, 150, 3)
                         );
                     }
                 }
+
+                break;
+
+
+
         }
+
 
     }
 
