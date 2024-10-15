@@ -125,18 +125,6 @@ public class BlockEvents implements Listener {
 
         // --------------------------------------------------------------------------- //
 
-        /*
-         * TODO repensar esto o moverlo a otro lado
-
-        // No romper bloques con pollo encima
-        Player p = e.getPlayer();
-
-        if(p.getInventory().contains(Material.CHICKEN)) {
-            p.sendMessage("No chicken pliz");
-            e.setCancelled(true);
-        }
-         */
-
 
 
     }
