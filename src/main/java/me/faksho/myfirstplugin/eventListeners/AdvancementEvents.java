@@ -12,7 +12,7 @@ public class AdvancementEvents implements Listener {
 
         Advancement advancement = event.getAdvancement();
 
+        assert advancement.getDisplay() != null;
         advancement.getDisplay().getTitle();
-
     }
 }

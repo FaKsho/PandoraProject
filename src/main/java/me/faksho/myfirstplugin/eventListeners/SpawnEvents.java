@@ -1,16 +1,14 @@
 package me.faksho.myfirstplugin.eventListeners;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Server;
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.PiglinBrute;
+import me.faksho.myfirstplugin.MyPlugin;
+import org.bukkit.*;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 public class SpawnEvents implements Listener {
 
@@ -29,6 +27,10 @@ public class SpawnEvents implements Listener {
 
                 server.broadcastMessage(ChatColor.BLUE +""+ ChatColor.BOLD +
                         "Virgencita de guadalupe, ¡Nos invaden los marcianos!");
+
+                ((LivingEntity)entity).addPotionEffect(
+                        new PotionEffect(PotionEffectType.RESISTANCE, PotionEffect.INFINITE_DURATION, 3)
+                );
 
                 Entity guardian = world.spawnEntity(entity.getLocation(), EntityType.GUARDIAN);
                 entity.addPassenger(guardian);
@@ -57,6 +59,30 @@ public class SpawnEvents implements Listener {
 
             // --------------------------------------------------------------------------- //
 
+            case ENDER_DRAGON:
+
+                Entity elderGuardian = world.spawnEntity(entity.getLocation(),
+                        EntityType.ELDER_GUARDIAN);
+
+                entity.addPassenger(elderGuardian);
+
+            break;
+
+            // --------------------------------------------------------------------------- //
+
+            case RAVAGER:
+
+                ((LivingEntity)entity).addPotionEffect(
+                        new PotionEffect(PotionEffectType.FIRE_RESISTANCE, PotionEffect.INFINITE_DURATION, 1)
+                );
+                ((LivingEntity)entity).addPotionEffect(
+                        new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 2)
+                );
+
+
+            break;
+
+            // --------------------------------------------------------------------------- //
 
         }
     }

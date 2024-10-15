@@ -11,9 +11,11 @@ import java.util.Set;
 
 public final class MyPlugin extends JavaPlugin {
 
+    private static MyPlugin plugin;
+
     @Override
     public void onEnable() {
-
+        plugin = this;
 
         System.out.println("Plugin started.");
 
@@ -34,6 +36,11 @@ public final class MyPlugin extends JavaPlugin {
 
     }
      */
+
+    public static MyPlugin getPlugin() {
+
+        return plugin;
+    }
 
     private void registrarListener() { // CHATGPT COSAS
 

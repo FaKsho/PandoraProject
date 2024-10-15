@@ -141,7 +141,7 @@ public class HurtEntitiesEvents implements Listener {
 
             case SHEEP: // TODO ovejas
 
-
+                world.spawnEntity(entity.getLocation(), EntityType.CAVE_SPIDER);
 
             break;
 
@@ -161,8 +161,11 @@ public class HurtEntitiesEvents implements Listener {
 
             // ------------------------------------------------------------------------------------- //
 
-            case CAT: // TODO gatitos
+            case LLAMA:
+            case WANDERING_TRADER:
 
+                ((LivingEntity)damager)
+                        .addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100, 5));
 
             break;
 
@@ -171,21 +174,19 @@ public class HurtEntitiesEvents implements Listener {
             ////////////  //////////// MOBS HOSTILES ///////////// ////////////
 
             case ENDERMAN:
-                if(entity.getType() == EntityType.ENDERMAN) {
 
-                    server.broadcastMessage("LA REBELDÍA CONTRA EL RÉGIMEN NO SERÁ TOLERADA");
-                    List<Entity> nearbyEntities = entity.getNearbyEntities(3, 3, 3);
 
-                    for (Entity entityPlayer : nearbyEntities) {
-
-                        if (entityPlayer.getType() == EntityType.PLAYER) {
-
-                            Player player = (Player) entityPlayer;
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 200, 50));
-                        }
-                    }
+                if(entity.isInsideVehicle()) {
+                    entity.getVehicle().eject();
                 }
-                break;
+                if(damager instanceof Player) {
+
+                    ((Player)damager).addPotionEffect(
+                            new PotionEffect(PotionEffectType.NAUSEA, 400, 2)
+                    );
+                }
+
+            break;
 
             // ------------------------------------------------------------------------------------- //
 

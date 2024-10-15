@@ -71,6 +71,7 @@ public class BlockEvents implements Listener {
 
         Block block = e.getBlock();
         Material blockType = block.getType();
+        Player player = e.getPlayer();
 
         World world = block.getWorld();
 
@@ -93,7 +94,26 @@ public class BlockEvents implements Listener {
             break;
 
             // --------------------------------------------------------------------------- //
+            // TODO terminal
+            case COAL_ORE:
+            case DEEPSLATE_COAL_ORE:
 
+            break;
+
+            // --------------------------------------------------------------------------- //
+
+            // Piedra
+            case STONE:
+            case DEEPSLATE:
+
+                if(new Random().nextInt(100) == 1) {
+                    world.spawnEntity(player.getLocation(), EntityType.SILVERFISH);
+                }
+
+            break;
+
+
+            // --------------------------------------------------------------------------- //
             // PANAL DE ABEJAS
             case BEE_NEST:
 
