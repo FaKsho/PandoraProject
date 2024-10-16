@@ -134,10 +134,9 @@ public class HurtEntitiesEvents implements Listener {
 
             case SHEEP:
 
-                if(random.nextInt(100) <= 25){
+                if(random.nextInt(100) <= 25){ // Probs pa otro lado
                     world.spawnEntity(entity.getLocation(), EntityType.CAVE_SPIDER);
                 }
-
 
             break;
 
@@ -271,6 +270,15 @@ public class HurtEntitiesEvents implements Listener {
                     ));
                 }
 
+
+                break;
+
+
+            // ------------------------------------------------------------------------------------- //
+
+            case PHANTOM:
+
+                if(damager instanceof Arrow) e.setCancelled(true);
 
                 break;
         }

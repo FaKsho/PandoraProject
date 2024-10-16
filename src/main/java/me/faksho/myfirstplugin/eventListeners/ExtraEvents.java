@@ -1,5 +1,6 @@
 package me.faksho.myfirstplugin.eventListeners;
 
+import me.faksho.myfirstplugin.MyPlugin;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -38,6 +39,22 @@ public class ExtraEvents implements Listener {
         }
     }
      */
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+
+        Player player = event.getPlayer();
+
+        if(player.getFoodLevel() < 20) {
+            return;
+        }
+        System.out.println("19");
+        player.getServer().getScheduler().scheduleSyncDelayedTask(MyPlugin.getPlugin(), new Runnable() {
+            public void run() {
+                player.setFoodLevel(19);
+            }
+        }, 1L);
+    }
 
 
 

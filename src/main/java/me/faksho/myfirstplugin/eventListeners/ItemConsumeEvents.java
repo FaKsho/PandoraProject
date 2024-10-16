@@ -33,6 +33,18 @@ public class ItemConsumeEvents implements Listener {
                 }
 
                 break;
+
+            case GLOW_BERRIES:
+
+                player.addPotionEffect(new PotionEffect(
+                        PotionEffectType.ABSORPTION,
+                        600,
+                        0
+                ));
+
+                break;
+
+            case SWEET_BERRIES:
         }
 
     }

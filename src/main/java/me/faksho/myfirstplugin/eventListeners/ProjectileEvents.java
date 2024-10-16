@@ -51,6 +51,8 @@ public class ProjectileEvents implements Listener {
                 // -------------------------------------------------------------------- //
 
             case ARROW:
+
+                if(hitEntity == null) break;
                 if(damager instanceof Skeleton) {
 
                     if(random.nextInt(100) < 20) {
@@ -59,7 +61,6 @@ public class ProjectileEvents implements Listener {
                         );
                     }
                 }
-
                 break;
 
 

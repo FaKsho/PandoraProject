@@ -33,18 +33,17 @@ public class SpawnEvents implements Listener {
                         new PotionEffect(PotionEffectType.RESISTANCE, PotionEffect.INFINITE_DURATION, 2)
                 );
 
-                Entity guardian = world.spawnEntity(entity.getLocation(), EntityType.GUARDIAN);
+                Entity mountedEntity = world.spawnEntity(entity.getLocation(), EntityType.SKELETON);
                 //entity.addPassenger(guardian);
 
-                // Mover el Guardian a una posición cercana para que parezca que está asociado
-                guardian.teleport(entity.getLocation().add(0, 0.5, 0)); // Ajusta la posición según sea necesario
+                mountedEntity.teleport(entity.getLocation().add(0, 0.5, 0)); // Ajusta la posición según sea necesario
 
                 // Opcional: Usar un runnable para ajustar la posición del Guardian si es necesario
                 Bukkit.getScheduler().runTaskTimer(MyPlugin.getPlugin(), () -> {
-                    if (guardian.isValid()) {
-                        guardian.teleport(entity.getLocation().add(0, 0.5, 0)); // Mantener la cercanía
+                    if (mountedEntity.isValid()) {
+                        mountedEntity.teleport(entity.getLocation().add(0, 0.5, 0)); // Mantener la cercanía
                     }
-                }, 0L, 5L); // Ajusta el intervalo según sea necesario
+                }, 0L, 2L); // Ajusta el intervalo según sea necesario
 
                 break;
 
