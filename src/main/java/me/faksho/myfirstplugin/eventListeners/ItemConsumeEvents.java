@@ -20,7 +20,7 @@ public class ItemConsumeEvents implements Listener {
 
         Random random = new Random();
 
-        switch (itemType) {
+        switch (itemType) { // TODO pendiente de terminar
 
             case GOLDEN_APPLE:
             case ENCHANTED_GOLDEN_APPLE:
