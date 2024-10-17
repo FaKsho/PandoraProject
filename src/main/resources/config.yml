@@ -1,8 +1,8 @@
-# Dormir
+### Dormir ###
 bed:
   can-sleep: true
 
-# Eventos de bloques
+### Eventos de bloques ###
 spawn-on-break:
   diamond-ore:
     chance: 15.0
@@ -26,7 +26,7 @@ spawn-on-break:
 
 ### Eventos de mobs ###
 entity:
-  ## Al Morir
+  ##### Al Morir #####
   death:
     evoker:
       # Spawnea un Illusioner
@@ -40,7 +40,9 @@ entity:
     blaze:
       # Spawnea un Breeze
       chance: 100.0
-  ## Al ser golpeadas
+
+
+  ###### Al ser golpeadas #####
   hurt:
     chicken:
       chance: 50.0
@@ -48,6 +50,10 @@ entity:
       mobs:
         - CREEPER
         - LIGHTNING_BOLT
+
+    zombie:
+      baby:
+        rate: 10.0
 
     cow:
       chance: 100
@@ -74,8 +80,8 @@ entity:
       amount: 5 # TNT_MINECART
 
     sheep:
-      chance: 100.0
-      mob: CAVE_SPIDER
+      chance: 30.0
+      mob: SPIDER
 
     turtle:
       chance: 100.0 # Veneno
@@ -84,8 +90,7 @@ entity:
       chance: 100.0 # Slow
 
 
-    # MOBS HOSTILES
-
+    ## MOBS HOSTILES ##
     enderman:
       chance: 100.0 # Nausea
 
@@ -97,23 +102,34 @@ entity:
 
     phantom:
       projectile-inmune: true
-  ## Al interactuar
+
+
+  ##### Al interactuar #####
   interact:
     cow:
       fly: true
 
-  ## Al disparar proyectiles
+
+  ##### Al disparar proyectiles ####
   shoot:
     skeleton:
       chance: 25.0 # Slow
 
-  ## Al spawnear
+  ##### Al spawnear #####
   spawn:
     phantom:
       resistance: true
       chance: 100.0
-  brute:
-    speed: true
 
-  ravager:
-    speed: true
+    brute:
+      speed: true
+
+    ravager:
+      speed: true
+
+    zombies:
+      baby: # La chance de baby se procesa primero
+        chance: 25.0
+        speed: false
+      horse-mounted:
+        chance: 25.0

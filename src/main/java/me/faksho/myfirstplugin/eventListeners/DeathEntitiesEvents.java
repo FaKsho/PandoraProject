@@ -47,13 +47,21 @@ public class DeathEntitiesEvents implements Listener {
             case ZOMBIE_VILLAGER:
 
 
+                if(entity.getVehicle() != null) {
+
+                    ZombieHorse zombieHorse = (ZombieHorse) entity.getVehicle();
+                    zombieHorse.setHealth(0.0);
+                }
+
                 if(random.nextDouble(100) < config.getDouble("entity.death.zombies.explosion.chance")) {
 
                     world.createExplosion(entity.getLocation(),
                             (float) config.getDouble("entity.death.zombies.explosion.power"),
                             false,
                             config.getBoolean("entity.death.zombies.explosion.break-blocks"));
+
                 }
+
 
             break;
 

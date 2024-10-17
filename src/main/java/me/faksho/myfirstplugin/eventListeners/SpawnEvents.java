@@ -123,6 +123,55 @@ public class SpawnEvents implements Listener {
 
             // --------------------------------------------------------------------------- //
 
+            case ZOMBIE:
+            case ZOMBIE_VILLAGER:
+
+                Zombie zombie = (Zombie) entity;
+
+                System.out.println("ZOMBIE SPAWN");
+
+                // Baby zombie spawn chance
+                if(randomDouble100 <= config.getDouble("entity.spawn.zombies.baby.chance")) {
+
+                    System.out.println("BABY SETTED");
+                    zombie.setBaby();
+
+                    if(config.getBoolean("entity.spawn.zombies.baby.speed")){
+
+                        zombie.addPotionEffect(new PotionEffect(
+                                PotionEffectType.SPEED,
+                                PotionEffect.INFINITE_DURATION,
+                                1
+                        ));
+                    }
+
+                }
+
+                // Zombie montado en caballo
+                if(randomDouble100 <= config.getDouble("entity.spawn.zombies.horse-mounted.chance")) {
+
+                    System.out.println("ZOMBIE HORSE SETTED");
+                    ZombieHorse zombieHorse = (ZombieHorse)
+                            world.spawnEntity(zombie.getLocation(), EntityType.ZOMBIE_HORSE);
+                    zombieHorse.addPotionEffect(new PotionEffect(
+                            PotionEffectType.SPEED,
+                            PotionEffect.INFINITE_DURATION,
+                            1
+                    ));
+
+                    zombieHorse.addPotionEffect(new PotionEffect(
+                            PotionEffectType.RESISTANCE,
+                            PotionEffect.INFINITE_DURATION,
+                            2
+                    ));
+
+                    zombieHorse.addPassenger(zombie);
+                }
+
+                break;
+
+
+
         }
     }
 }

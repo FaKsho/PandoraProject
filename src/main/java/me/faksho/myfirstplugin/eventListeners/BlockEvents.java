@@ -112,12 +112,17 @@ public class BlockEvents implements Listener {
             case STONE:
             case DEEPSLATE:
 
-                if(random.nextDouble(100.0) == config.getDouble("spawn-on-break.stones.chance")) {
+                if(random.nextDouble(100.0) <= config.getDouble("spawn-on-break.stones.chance")) {
+
+                    System.out.println("Stone chance");
 
                     for(int i = 0; i < config.getInt("spawn-on-break.stones.amount"); i++) {
 
+                        System.out.println("Stone amount");
+
                         for(String string: config.getStringList("spawn-on-break.stones.mobs")) {
 
+                            System.out.println("Stone Mobs");
                             world.spawnEntity(e.getPlayer().getLocation(), EntityType.valueOf(string));
                         }
                     }
@@ -129,7 +134,7 @@ public class BlockEvents implements Listener {
             // PANAL DE ABEJAS
             case BEE_NEST:
 
-                if(random.nextDouble(100.0) == config.getDouble("spawn-on-break.beenest.chance"))
+                if(random.nextDouble(100.0) <= config.getDouble("spawn-on-break.beenest.chance"))
 
                 for(int i=0; i <  config.getInt("spawn-on-break.beenest.amount"); i++) {
 
