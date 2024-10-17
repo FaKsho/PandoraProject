@@ -3,6 +3,7 @@ package me.faksho.myfirstplugin.eventListeners;
 import me.faksho.myfirstplugin.MyPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,11 +24,20 @@ public class DeathEntitiesEvents implements Listener {
 
         Random random = new Random();
 
+        MyPlugin plugin = MyPlugin.getPlugin();
+        FileConfiguration config = plugin.getConfig();
+
         switch (entityType) {
 
             case EVOKER:
 
-                world.spawnEntity(entity.getLocation(), EntityType.ILLUSIONER);
+                if(random.nextDouble(100) < config.getDouble("entity.death.evoker.chance")) {
+
+                    for(int i = 0; i < config.getInt("entity.death.evoker.amount"); i++){
+
+                        world.spawnEntity(entity.getLocation(), EntityType.ILLUSIONER);
+                    }
+                }
 
             break;
 
@@ -37,11 +47,12 @@ public class DeathEntitiesEvents implements Listener {
             case ZOMBIE_VILLAGER:
 
 
-                if(random.nextInt(100) < 40) {
+                if(random.nextDouble(100) < config.getDouble("entity.death.zombies.explosion.chance")) {
 
                     world.createExplosion(entity.getLocation(),
-                            1.5f,
-                            false);
+                            (float) config.getDouble("entity.death.zombies.explosion.power"),
+                            false,
+                            config.getBoolean("entity.death.zombies.explosion.break-blocks"));
                 }
 
             break;
@@ -50,7 +61,10 @@ public class DeathEntitiesEvents implements Listener {
 
             case BLAZE:
 
-                world.spawnEntity(entity.getLocation(), EntityType.BREEZE);
+                if(random.nextDouble(100) < config.getDouble("entity.death.blaze.chance")) {
+
+                    world.spawnEntity(entity.getLocation(), EntityType.BREEZE);
+                }
 
             break;
 

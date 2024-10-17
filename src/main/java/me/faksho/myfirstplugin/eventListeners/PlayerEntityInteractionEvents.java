@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,10 +29,16 @@ public class PlayerEntityInteractionEvents implements Listener {
         World world = player.getWorld();
         EntityType entityType = entityClicked.getType();
 
+        MyPlugin plugin = MyPlugin.getPlugin();
+        FileConfiguration config = plugin.getConfig();
+
 
         switch (entityType){
 
         case COW:
+
+            if(!config.getBoolean("entity.interact.cow.fly")) break;
+
             if(player.getInventory().getItemInMainHand().getType() == Material.BUCKET) {
 
                 ((LivingEntity)entityClicked).addPotionEffect(
@@ -48,10 +55,7 @@ public class PlayerEntityInteractionEvents implements Listener {
                         world
                 );
 
-
-
             }
-
             break;
 
             case SILVERFISH:

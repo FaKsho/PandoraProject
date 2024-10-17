@@ -1,6 +1,8 @@
 package me.faksho.myfirstplugin.eventListeners;
 
+import me.faksho.myfirstplugin.MyPlugin;
 import org.bukkit.*;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -28,6 +30,10 @@ public class HurtEntitiesEvents implements Listener {
         Server server = entity.getServer();
 
         Random random = new Random();
+        double randomDouble100 = random.nextDouble(100);
+
+        MyPlugin plugin = MyPlugin.getPlugin();
+        FileConfiguration config = plugin.getConfig();
 
         // ------------------------------------------//------------------------------------------- //
 
@@ -35,41 +41,48 @@ public class HurtEntitiesEvents implements Listener {
 
             case CHICKEN:
 
-                if(entity.getType() == EntityType.CHICKEN) {
+                if (randomDouble100 <= config.getDouble("entity.hurt.chicken.chance")) {
+                    System.out.println("Chicken chance");
 
-                    for(int i = 0; i < 10; i++) {
-                        world.spawnEntity(damagerLocation, EntityType.CREEPER, true);
-                        world.spawnEntity(damagerLocation, EntityType.LIGHTNING_BOLT);
+                    for (int i = 0; i < config.getInt("entity.hurt.chicken.amount"); i++) {
+
+                        System.out.println("Chicken amount");
+                        for (String string : config.getStringList("entity.hurt.chicken.mobs")) {
+                            System.out.println("Chicken mob spawn");
+                            world.spawnEntity(damagerLocation, EntityType.valueOf(string));
+                        }
                     }
                 }
-            break;
+                break;
 
             // ------------------------------------------------------------------------------------- //
 
             case COW:
-                if(entity.getType() == EntityType.COW) {
+                if (randomDouble100 <= config.getDouble("entity.hurt.cow.chance")) {
 
-                    // TODO mover la cantidad a otro lado
-                    for(int i = 0; i < 5; i++) {
-                        world.spawnEntity(
-                                damager.getLocation(),
-                                EntityType.EVOKER_FANGS);
+                    for (int i = 0; i < config.getInt("entity.hurt.cow.amount"); i++) {
+
+                        for (String string : config.getStringList("entity.hurt.cow.mobs")) {
+
+                            world.spawnEntity(damagerLocation, EntityType.EVOKER_FANGS);
+                        }
                     }
                 }
-            break;
+                break;
 
             // ------------------------------------------------------------------------------------- //
 
             case PIG:
 
-                if (entity.getType() == EntityType.PIG) {
-                    if(damager.getType() == EntityType.PLAYER) {
+                if (randomDouble100 <= config.getDouble("entity.hurt.pig.chance")) {
+
+                    if (damager instanceof Player) {
 
                         Player player = (Player) e.getDamager();
                         protectPigs(player);
                     }
 
-                    if(damager.getType() == EntityType.ARROW) {
+                    if (damager instanceof Arrow) {
 
                         System.out.println("ARROW");
 
@@ -80,87 +93,96 @@ public class HurtEntitiesEvents implements Listener {
                         protectPigs(shooter);
                     }
                 }
-            break;
+
+                break;
 
             // ------------------------------------------------------------------------------------- //
 
             case BEE:
 
-                if(entity.getType() == EntityType.BEE) {
+                if (randomDouble100 <= config.getDouble("entity.hurt.bee.chance")) {
 
-                    //Player player = (Player) damager;
-                    if(damager.getType() == EntityType.PLAYER){
+                    if (damager instanceof Player) {
 
-                        world.spawnEntity(entity.getLocation(), EntityType.BEE);
+                        for (int i = 0; i < config.getInt("entity.hurt.bee.amount"); i++) {
 
-                        Entity witherSkeleton = world.spawnEntity(entity.getLocation(), EntityType.WITHER_SKELETON);
-                        entity.addPassenger(witherSkeleton);
+                            world.spawnEntity(entity.getLocation(), EntityType.BEE);
+
+                            Entity passengerEntity = world.spawnEntity(entity.getLocation(),
+                                    EntityType.valueOf(config.getString("entity.hurt.bee.mob")));
+
+                            entity.addPassenger(passengerEntity);
+                        }
                     }
                 }
-            break;
+                break;
 
             // ------------------------------------------------------------------------------------- //
 
             case AXOLOTL:
 
-                if(entity.getType() == EntityType.AXOLOTL) {
+                if (randomDouble100 <= config.getDouble("entity.hurt.axolotl.chance")) {
 
-                    if(damager.getType() == EntityType.PLAYER) {
+                    if (damager instanceof Player) {
 
-                        damager.sendMessage("No lastimes bichitos xfi");
-                        damager.getWorld().spawnEntity(entity.getLocation(), EntityType.VEX);
+                        for (int i = 0; i < config.getInt("entity.hurt.axolotl.amount"); i++) {
+                            damager.getWorld().spawnEntity(entity.getLocation(), EntityType.VEX);
+                        }
                     }
                 }
-            break;
+                break;
 
             // ------------------------------------------------------------------------------------- //
 
             case RABBIT:
-                if(entity.getType() == EntityType.RABBIT) {
-                    Rabbit rabbit = (Rabbit) entity;
-                    Rabbit.Type bunnyType = rabbit.getRabbitType();
+                if (randomDouble100 <= config.getDouble("entity.hurt.rabbit.chance")) {
 
-                    if(bunnyType == Rabbit.Type.WHITE) {
+                    for (int i = 0; i < config.getInt("entity.hurt.rabbit.amount"); i++) {
 
-                        // TODO mover la cantidad a otro lado
-                        for(int i = 0; i < 5; i++) {
-                            world.spawnEntity(damagerLocation, EntityType.TNT_MINECART);
-                        }
+                        world.spawnEntity(damagerLocation, EntityType.TNT_MINECART);
                     }
                 }
-            break;
+                break;
 
             // ------------------------------------------------------------------------------------- //
 
             case SHEEP:
 
-                if(random.nextInt(100) <= 25){ // Probs pa otro lado
-                    world.spawnEntity(entity.getLocation(), EntityType.CAVE_SPIDER);
+                if (randomDouble100<= config.getDouble("entity.hurt.sheep.chance")) {
+
+                    world.spawnEntity(entity.getLocation(), EntityType.valueOf(
+                            config.getString("entity.hurt.sheep.mob")
+                    ));
+
                 }
 
-            break;
+                break;
 
 
             // ------------------------------------------------------------------------------------- //
 
             case TURTLE:
 
-                ((LivingEntity)damager).addPotionEffect(
-                        new PotionEffect(
-                                PotionEffectType.POISON,
-                                100,
-                                5
-                        ));
+                if (randomDouble100 <= config.getDouble("entity.hurt.turtle.chance")) {
+                    ((LivingEntity) damager).addPotionEffect(
+                            new PotionEffect(
+                                    PotionEffectType.POISON,
+                                    100,
+                                    5
+                            ));
+                }
 
-            break;
+                break;
 
             // ------------------------------------------------------------------------------------- //
 
             case LLAMA:
             case WANDERING_TRADER:
 
-                ((LivingEntity)damager)
-                        .addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100, 5));
+                if (randomDouble100 <= config.getDouble("entity.hurt.llama-wanderingt.chance")){
+                    ((LivingEntity) damager)
+                            .addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 100, 5));
+                }
 
             break;
 
@@ -170,16 +192,19 @@ public class HurtEntitiesEvents implements Listener {
 
             case ENDERMAN:
 
+                if(entity.isInsideVehicle()) entity.getVehicle().eject();
 
-                if(entity.isInsideVehicle()) {
-                    entity.getVehicle().eject();
-                }
-                if(damager instanceof Player) {
+                if(randomDouble100 <= config.getDouble("entity.hurt.enderman.chance")) {
 
-                    ((Player)damager).addPotionEffect(
-                            new PotionEffect(PotionEffectType.NAUSEA, 400, 2)
-                    );
+                    if(damager instanceof Player) {
+
+                        ((Player)damager).addPotionEffect(
+                                new PotionEffect(PotionEffectType.NAUSEA, 400, 2)
+                        );
+                    }
+
                 }
+
 
             break;
 
@@ -191,13 +216,13 @@ public class HurtEntitiesEvents implements Listener {
                 Player player = (Player) damager;
                 LivingEntity spider = (LivingEntity) entity;
 
-                player.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS,
-                        100,
-                        1));
+                if(randomDouble100 <= config.getDouble("entity.hurt.spiders.chance")) {
 
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS,
+                            200,
+                            1));
+                }
                 spider.addPassenger(player);
-
-
             break;
 
 
@@ -206,6 +231,8 @@ public class HurtEntitiesEvents implements Listener {
 
             case SKELETON:
             case WITHER_SKELETON:
+
+                if(!config.getBoolean("entity.hurt.skeleton.enable-teleport")) break;
 
                 LivingEntity skeleton = (LivingEntity) entity;
 
@@ -237,7 +264,7 @@ public class HurtEntitiesEvents implements Listener {
                                 teleported = true;
                                 break;
                             }
-                            //newLocation.subtract(0, 1, 0);
+
                         }
                     }
                 }
@@ -255,31 +282,28 @@ public class HurtEntitiesEvents implements Listener {
                 if(damager.getType() == EntityType.ARROW ||
                         damager.getType() == EntityType.SPECTRAL_ARROW){
 
-                    System.out.println("creepa");
-
                     ((LivingEntity)entity).addPotionEffect(new PotionEffect(
                        PotionEffectType.SPEED,
-                       50,
+                       60,
                        3
                     ));
 
                     ((LivingEntity)entity).addPotionEffect(new PotionEffect(
                             PotionEffectType.GLOWING,
-                            50,
+                            60,
                             1
                     ));
                 }
 
-
                 break;
-
 
             // ------------------------------------------------------------------------------------- //
 
             case PHANTOM:
 
-                if(damager instanceof Arrow) e.setCancelled(true);
+                if(!config.getBoolean("entity.hurt.phantom.projectile-inmune")) break;
 
+                if(damager instanceof Arrow) e.setCancelled(true);
                 break;
         }
 

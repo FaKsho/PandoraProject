@@ -10,9 +10,12 @@ public class AdvancementEvents implements Listener {
     @EventHandler
     public void onPlayerGetArchivment(PlayerAdvancementDoneEvent event) {
 
+        /*
         Advancement advancement = event.getAdvancement();
 
         assert advancement.getDisplay() != null;
         advancement.getDisplay().getTitle();
+
+         */
     }
 }

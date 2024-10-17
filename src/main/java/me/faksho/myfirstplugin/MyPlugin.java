@@ -19,6 +19,8 @@ public final class MyPlugin extends JavaPlugin {
 
         System.out.println("Plugin started.");
 
+        saveDefaultConfig();
+        //saveConfig();
         registrarListener();
 
         // Registrar comandos

@@ -1,0 +1,119 @@
+# Dormir
+bed:
+  can-sleep: true
+
+# Eventos de bloques
+spawn-on-break:
+  diamond-ore:
+    chance: 15.0
+    amount: 1
+    mobs:
+      - CREEPER
+      - LIGHTNING_BOLT
+  stones:
+    chance: 1.0
+    amount: 1
+    mobs:
+      - SILVERFISH
+  beenest:
+    chance: 100.0
+    amount: 5
+    mobs:
+      - BEE
+  coal-ore:
+    chance: 0.0
+    amount: 0
+
+### Eventos de mobs ###
+entity:
+  ## Al Morir
+  death:
+    evoker:
+      # Spawnea un Illusioner
+      chance: 100.0
+      amount: 1
+    zombies:
+      explosion:
+        chance: 45.0
+        power: 1.5
+        break-blocks: true
+    blaze:
+      # Spawnea un Breeze
+      chance: 100.0
+  ## Al ser golpeadas
+  hurt:
+    chicken:
+      chance: 50.0
+      amount: 3
+      mobs:
+        - CREEPER
+        - LIGHTNING_BOLT
+
+    cow:
+      chance: 100
+      amount: 1
+      mobs:
+        - EVOKER_FANGS
+
+    pig: # Manda a volar a jugadores
+      chance: 100.0
+
+    bee: # Invoca x abejas con un mob sobre ella
+      chance: 100.0
+      amount: 1
+      mob: WITHER_SKELETON # Mob subido
+
+    axolotl:
+      chance: 100.0
+      amount: 2
+      mobs:
+        - VEX
+
+    rabbit:
+      chance: 100.0
+      amount: 5 # TNT_MINECART
+
+    sheep:
+      chance: 100.0
+      mob: CAVE_SPIDER
+
+    turtle:
+      chance: 100.0 # Veneno
+
+    llama-wanderingt:
+      chance: 100.0 # Slow
+
+
+    # MOBS HOSTILES
+
+    enderman:
+      chance: 100.0 # Nausea
+
+    spiders:
+      chance: 100.0 # Darkness
+
+    skeletons:
+      enable-teleport: true
+
+    phantom:
+      projectile-inmune: true
+  ## Al interactuar
+  interact:
+    cow:
+      fly: true
+
+  ## Al disparar proyectiles
+  shoot:
+    skeleton:
+      chance: 25.0 # Slow
+
+  ## Al spawnear
+  spawn:
+    phantom:
+      resistance: true
+      chance: 100.0
+  brute:
+    speed: true
+
+  ravager:
+    speed: true

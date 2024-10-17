@@ -2,3 +2,9 @@
   - BlockEvents
   - DeathEntitiesEvents
   - HurtEntitiesEvents _(El peor sin dudas)_
+
+- [ ] Terminar efectos de ItemConsumeEvents
+
+- [ ] MovementEvents
+- [ ] PlayerHurtEvents
+- [ ] VillagerEvents 

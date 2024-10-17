@@ -1,12 +1,14 @@
 package me.faksho.myfirstplugin.eventListeners;
 
 import jdk.javadoc.internal.doclint.HtmlTag;
+import me.faksho.myfirstplugin.MyPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockType;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -75,22 +77,26 @@ public class BlockEvents implements Listener {
 
         Random random = new Random();
 
+        MyPlugin plugin = MyPlugin.getPlugin();
+
+        FileConfiguration config = plugin.getConfig();
+
         switch (blockType) {
 
             // ORE DE DIAMANTE
             case DIAMOND_ORE:
             case DEEPSLATE_DIAMOND_ORE:
 
-                if(random.nextInt(100) <= 15) {
+                if(random.nextDouble(100.0) <= config.getDouble("spawn-on-break.diamond-ore.chance")) {
 
-                    e.getPlayer()
-                            .getWorld()
-                            .spawnEntity(e.getPlayer().getLocation(), EntityType.CREEPER);
-                    e.getPlayer()
-                            .getWorld()
-                            .spawnEntity(e.getPlayer().getLocation(), EntityType.LIGHTNING_BOLT);
+                    for (int i = 0; i < config.getInt("spawn-on-break.diamond-ore.amount"); i++) {
+
+                        for(String string: config.getStringList("spawn-on-break.diamond-ore.mobs")) {
+
+                            world.spawnEntity(e.getPlayer().getLocation(), EntityType.valueOf(string));
+                        }
+                    }
                 }
-
             break;
 
             // --------------------------------------------------------------------------- //
@@ -106,26 +112,36 @@ public class BlockEvents implements Listener {
             case STONE:
             case DEEPSLATE:
 
-                if(random.nextInt(100) == 1) {
-                    world.spawnEntity(player.getLocation(), EntityType.SILVERFISH);
-                }
+                if(random.nextDouble(100.0) == config.getDouble("spawn-on-break.stones.chance")) {
 
+                    for(int i = 0; i < config.getInt("spawn-on-break.stones.amount"); i++) {
+
+                        for(String string: config.getStringList("spawn-on-break.stones.mobs")) {
+
+                            world.spawnEntity(e.getPlayer().getLocation(), EntityType.valueOf(string));
+                        }
+                    }
+                }
             break;
 
 
             // --------------------------------------------------------------------------- //
             // PANAL DE ABEJAS
             case BEE_NEST:
-                for(int i=0; i < 5; i++) {
-                    world.spawnEntity(
-                            block.getLocation(),
-                            EntityType.BEE);
+
+                if(random.nextDouble(100.0) == config.getDouble("spawn-on-break.beenest.chance"))
+
+                for(int i=0; i <  config.getInt("spawn-on-break.beenest.amount"); i++) {
+
+                    for(String string: config.getStringList("spawn-on-break.beenest.mobs")) {
+
+                        world.spawnEntity(e.getPlayer().getLocation(), EntityType.valueOf(string));
+                    }
                 }
+            break;
         }
 
         // --------------------------------------------------------------------------- //
-
-
 
     }
 }

@@ -1,9 +1,11 @@
 package me.faksho.myfirstplugin.eventListeners;
 
+import me.faksho.myfirstplugin.MyPlugin;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,6 +27,10 @@ public class ProjectileEvents implements Listener {
         Entity hitEntity = event.getHitEntity();
 
         Random random = new Random();
+        double randomDouble100 = random.nextDouble(100);
+
+        MyPlugin plugin = MyPlugin.getPlugin();
+        FileConfiguration config = plugin.getConfig();
 
         switch (entityType) {
 
@@ -55,7 +61,7 @@ public class ProjectileEvents implements Listener {
                 if(hitEntity == null) break;
                 if(damager instanceof Skeleton) {
 
-                    if(random.nextInt(100) < 20) {
+                    if(randomDouble100 <= config.getDouble("entity.shoot.skeleton.chance")) {
                         ((LivingEntity)hitEntity).addPotionEffect(
                                 new PotionEffect(PotionEffectType.SLOWNESS, 150, 3)
                         );
