@@ -128,12 +128,9 @@ public class SpawnEvents implements Listener {
 
                 Zombie zombie = (Zombie) entity;
 
-                System.out.println("ZOMBIE SPAWN");
-
                 // Baby zombie spawn chance
                 if(randomDouble100 <= config.getDouble("entity.spawn.zombies.baby.chance")) {
 
-                    System.out.println("BABY SETTED");
                     zombie.setBaby();
 
                     if(config.getBoolean("entity.spawn.zombies.baby.speed")){
@@ -150,7 +147,6 @@ public class SpawnEvents implements Listener {
                 // Zombie montado en caballo
                 if(randomDouble100 <= config.getDouble("entity.spawn.zombies.horse-mounted.chance")) {
 
-                    System.out.println("ZOMBIE HORSE SETTED");
                     ZombieHorse zombieHorse = (ZombieHorse)
                             world.spawnEntity(zombie.getLocation(), EntityType.ZOMBIE_HORSE);
                     zombieHorse.addPotionEffect(new PotionEffect(
