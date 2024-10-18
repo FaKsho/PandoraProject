@@ -41,14 +41,16 @@ public class HurtEntitiesEvents implements Listener {
 
             case CHICKEN:
 
+                if(!(damager instanceof Player)) break;
+
+
                 if (randomDouble100 <= config.getDouble("entity.hurt.chicken.chance")) {
-                    System.out.println("Chicken chance");
 
                     for (int i = 0; i < config.getInt("entity.hurt.chicken.amount"); i++) {
 
-                        System.out.println("Chicken amount");
+
                         for (String string : config.getStringList("entity.hurt.chicken.mobs")) {
-                            System.out.println("Chicken mob spawn");
+
                             world.spawnEntity(damagerLocation, EntityType.valueOf(string));
                         }
                     }
@@ -58,13 +60,15 @@ public class HurtEntitiesEvents implements Listener {
             // ------------------------------------------------------------------------------------- //
 
             case COW:
+                if(!(damager instanceof Player)) break;
+
                 if (randomDouble100 <= config.getDouble("entity.hurt.cow.chance")) {
 
                     for (int i = 0; i < config.getInt("entity.hurt.cow.amount"); i++) {
 
                         for (String string : config.getStringList("entity.hurt.cow.mobs")) {
 
-                            world.spawnEntity(damagerLocation, EntityType.EVOKER_FANGS);
+                            world.spawnEntity(damagerLocation, EntityType.valueOf(string));
                         }
                     }
                 }
@@ -73,6 +77,7 @@ public class HurtEntitiesEvents implements Listener {
             // ------------------------------------------------------------------------------------- //
 
             case PIG:
+
 
                 if (randomDouble100 <= config.getDouble("entity.hurt.pig.chance")) {
 
@@ -177,6 +182,7 @@ public class HurtEntitiesEvents implements Listener {
             // ------------------------------------------------------------------------------------- //
 
             case LLAMA:
+            case TRADER_LLAMA:
             case WANDERING_TRADER:
 
                 if (randomDouble100 <= config.getDouble("entity.hurt.llama-wanderingt.chance")){
@@ -232,7 +238,7 @@ public class HurtEntitiesEvents implements Listener {
             case SKELETON:
             case WITHER_SKELETON:
 
-                if(!config.getBoolean("entity.hurt.skeleton.enable-teleport")) break;
+                if(!config.getBoolean("entity.hurt.skeletons.enable-teleport")) break;
 
                 LivingEntity skeleton = (LivingEntity) entity;
 
@@ -277,7 +283,7 @@ public class HurtEntitiesEvents implements Listener {
 
             case CREEPER:
 
-                System.out.println(damager.getName());
+                if(!config.getBoolean("entity.hurt.creeper.speed")) break;
 
                 if(damager.getType() == EntityType.ARROW ||
                         damager.getType() == EntityType.SPECTRAL_ARROW){

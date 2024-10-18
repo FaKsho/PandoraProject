@@ -16,8 +16,8 @@ spawn-on-break:
     mobs:
       - SILVERFISH
   beenest:
-    chance: 100.0
-    amount: 5
+    chance: 75.0
+    amount: 3
     mobs:
       - BEE
   coal-ore:
@@ -50,10 +50,6 @@ entity:
       mobs:
         - CREEPER
         - LIGHTNING_BOLT
-
-    zombie:
-      baby:
-        rate: 10.0
 
     cow:
       chance: 100
@@ -95,10 +91,13 @@ entity:
       chance: 100.0 # Nausea
 
     spiders:
-      chance: 100.0 # Darkness
+      chance: 50.0 # Darkness
 
     skeletons:
       enable-teleport: true
+
+    creeper: # Al ser golpeados por una flecha
+      speed: true
 
     phantom:
       projectile-inmune: true
@@ -119,16 +118,21 @@ entity:
   spawn:
     phantom:
       resistance: true
-      chance: 100.0
+      chance: 100.0 # Chance de resis + mob
+      mob: SKELETON
 
     brute:
-      speed: true
+      speed:
+        enable: true
+        amplifier: 1
 
     ravager:
-      speed: true
+      speed:
+        enable: true
+        amplifier: 1
 
     zombies:
-      baby: # La chance de baby se procesa primero
+      baby:
         chance: 25.0
         speed: false
       horse-mounted:

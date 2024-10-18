@@ -40,7 +40,8 @@ public class SpawnEvents implements Listener {
                     server.broadcastMessage(ChatColor.BLUE +""+ ChatColor.BOLD +
                             "Virgencita de guadalupe, ¡Nos invaden los marcianos!");
 
-                    Entity mountedEntity = world.spawnEntity(entity.getLocation(), EntityType.SKELETON);
+                    Entity mountedEntity = world.spawnEntity(entity.getLocation(),
+                            EntityType.valueOf(config.getString("entity.spawn.phantom.mob")));
 
                     mountedEntity.teleport(entity.getLocation().add(0, 0.5, 0)); // Ajusta la posición según sea necesario
 
@@ -71,14 +72,14 @@ public class SpawnEvents implements Listener {
 
             case PIGLIN_BRUTE:
 
-                if(config.getBoolean("entity.spawn.brute.speed")) break;
+                if(!config.getBoolean("entity.spawn.brute.speed.enable")) break;
 
                 ((LivingEntity) entity)
                     .addPotionEffect(
                         new PotionEffect(
                             PotionEffectType.SPEED,
                             PotionEffect.INFINITE_DURATION,
-                            1
+                            config.getInt("entity.spawn.brute.speed.amplifier")
                         )
                 );
 
@@ -108,14 +109,14 @@ public class SpawnEvents implements Listener {
 
             case RAVAGER:
 
-                if(!config.getBoolean("entity.spawn.ravager.speed")) break;
+                if(!config.getBoolean("entity.spawn.ravager.speed.enable")) break;
 
                 ((LivingEntity)entity)
                     .addPotionEffect(
                         new PotionEffect(
                                 PotionEffectType.SPEED,
                                 PotionEffect.INFINITE_DURATION,
-                                2)
+                                config.getInt("entity.spawn.ravager.speed.amplifier"))
                 );
 
 

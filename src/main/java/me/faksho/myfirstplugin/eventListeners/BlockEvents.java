@@ -93,7 +93,7 @@ public class BlockEvents implements Listener {
 
                         for(String string: config.getStringList("spawn-on-break.diamond-ore.mobs")) {
 
-                            world.spawnEntity(e.getPlayer().getLocation(), EntityType.valueOf(string));
+                            world.spawnEntity(player.getLocation(), EntityType.valueOf(string));
                         }
                     }
                 }
@@ -123,7 +123,7 @@ public class BlockEvents implements Listener {
                         for(String string: config.getStringList("spawn-on-break.stones.mobs")) {
 
                             System.out.println("Stone Mobs");
-                            world.spawnEntity(e.getPlayer().getLocation(), EntityType.valueOf(string));
+                            world.spawnEntity(block.getLocation(), EntityType.valueOf(string));
                         }
                     }
                 }
