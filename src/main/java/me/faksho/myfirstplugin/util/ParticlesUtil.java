@@ -14,8 +14,9 @@ public class ParticlesUtil {
     public static void createParticlesFromEntity(Entity entityClicked,
                                                  Particle particle,
                                                  int durationInSeconds,
-                                                 int intervalInTicks,
-                                                 World world) {
+                                                 int intervalInTicks) {
+
+        World world = entityClicked.getWorld();
 
 
         new BukkitRunnable() {

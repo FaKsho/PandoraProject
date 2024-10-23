@@ -51,8 +51,7 @@ public class PlayerEntityInteractionEvents implements Listener {
                         entityClicked,
                         Particle.WHITE_SMOKE,
                         10,
-                        1,
-                        world
+                        1
                 );
 
             }
