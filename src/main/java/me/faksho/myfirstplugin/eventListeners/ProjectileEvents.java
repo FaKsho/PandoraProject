@@ -65,6 +65,7 @@ public class ProjectileEvents implements Listener {
                         ((LivingEntity)hitEntity).addPotionEffect(
                                 new PotionEffect(PotionEffectType.SLOWNESS, 150, 3)
                         );
+
                     }
                 }
                 break;
