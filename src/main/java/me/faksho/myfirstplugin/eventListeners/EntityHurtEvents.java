@@ -14,7 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-public class HurtEntitiesEvents implements Listener {
+public class EntityHurtEvents implements Listener {
 
 
     @EventHandler
@@ -205,7 +205,7 @@ public class HurtEntitiesEvents implements Listener {
                     if(damager instanceof Player) {
 
                         ((Player)damager).addPotionEffect(
-                                new PotionEffect(PotionEffectType.NAUSEA, 400, 2)
+                                new PotionEffect(PotionEffectType.NAUSEA, 150, 2)
                         );
                     }
 

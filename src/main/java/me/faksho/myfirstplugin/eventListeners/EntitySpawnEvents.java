@@ -9,12 +9,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
-import org.checkerframework.checker.signature.qual.BinaryNameWithoutPackage;
 
 import java.util.Random;
 
-public class SpawnEvents implements Listener {
+public class EntitySpawnEvents implements Listener {
 
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent e) {

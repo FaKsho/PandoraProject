@@ -1,18 +1,16 @@
 package me.faksho.myfirstplugin.eventListeners;
 
 import me.faksho.myfirstplugin.MyPlugin;
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.util.Vector;
 
 import java.util.Random;
 
-public class DeathEntitiesEvents implements Listener {
+public class EntityDeathEvents implements Listener {
 
     @EventHandler
     public void onPlayerKillEntity(EntityDeathEvent event) {

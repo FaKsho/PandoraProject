@@ -1,11 +1,10 @@
 package me.faksho.myfirstplugin.eventListeners;
 
 import me.faksho.myfirstplugin.MyPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -17,6 +16,10 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Collection;
 
 public class SpecialEvents implements Listener {
+
+    MyPlugin plugin = MyPlugin.getPlugin();
+    FileConfiguration config = plugin.getConfig();
+
 
     /* EVENTOS ESPECIALES
      * Estos eventos son eventos específicos, que todavía no encuentro otro lugar
@@ -45,40 +48,60 @@ public class SpecialEvents implements Listener {
 
     }
 
+
+
+
     @EventHandler
-    public void onEntityGetsObjective(EntityTargetEvent event) {
+    public void onEntityTargetPlayer(EntityTargetEvent event) {
 
         Entity targetEntity = event.getTarget();
-        LivingEntity attacker = (LivingEntity) event.getEntity();
-        EntityType attackerType = attacker.getType();
+        LivingEntity entity = (LivingEntity) event.getEntity();
+        EntityType entityType = entity.getType();
 
         // Verificar si el target es un jugador
         if(!(targetEntity instanceof Player)) return;
         Player target = (Player) targetEntity;
 
-        switch (attackerType) {
+
+        switch (entityType) {
 
             /* Los creepers reciben SPD si su objetivo tiene el efecto
              * especificado. En este caso SLOW.
              */
+
             case CREEPER:
+
+                if(!(config.getBoolean("special.player-targeted.creeper.enable"))) break;
+
                 if(hasEffect(target, PotionEffectType.SLOWNESS)) {
 
-
-
-                    attacker.addPotionEffect(new PotionEffect(
+                    entity.addPotionEffect(new PotionEffect(
                             PotionEffectType.SPEED,
                             160,
                             2
                     ));
 
-                    attacker.addPotionEffect(new PotionEffect(
+                    entity.addPotionEffect(new PotionEffect(
                             PotionEffectType.GLOWING,
                             160,
                             0
                     ));
                 }
+                break;
 
+            case ENDERMAN:
+                if(!(config.getBoolean("special.player-targeted.enderman.enable"))) break;
+
+                Enderman enderman = (Enderman) entity;
+
+                // TODO hacer que se pueda revertir el tamaño
+                setSize(enderman, 0.62f);
+
+                break;
+
+
+            default:
+                break;
         }
 
     }
@@ -96,6 +119,11 @@ public class SpecialEvents implements Listener {
         }
 
         return false;
+    }
+
+    private void setSize(LivingEntity entity, float size) {
+
+        entity.getAttribute(Attribute.GENERIC_SCALE).setBaseValue(size);
     }
 
 }

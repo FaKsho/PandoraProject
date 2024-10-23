@@ -137,3 +137,14 @@ entity:
         speed: false
       horse-mounted:
         chance: 25.0
+
+
+### Eventos especiales ###
+
+special:
+  player-targeted:
+    creeper:
+      enable: true
+
+    enderman:
+      enable: true
