@@ -113,4 +113,3 @@ buildNumber.properties
 run/
 1.17.1
 1.21.1
-src/main/java/me/faksho/myfirstplugin/eventListeners/TestEvents.java
