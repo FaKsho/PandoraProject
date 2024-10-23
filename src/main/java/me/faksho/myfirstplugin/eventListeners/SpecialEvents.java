@@ -98,18 +98,4 @@ public class SpecialEvents implements Listener {
         return false;
     }
 
-
-
-
-    ///////////////////////// TEST /////////////////////////
-
-    @EventHandler
-    public void biggerMob(EntityDamageByEntityEvent event) {
-
-        if(event.getDamager() instanceof Player) {
-            // TODO sacar esto
-            ((LivingEntity)event.getEntity()).getAttribute(Attribute.GENERIC_SCALE).setBaseValue(5);
-        }
-    }
-
 }
