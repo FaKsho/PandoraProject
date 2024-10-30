@@ -1,6 +1,6 @@
-package me.faksho.myfirstplugin.eventListeners;
+package me.faksho.pandoraProject.eventListeners.entities.hostile;
 
-import me.faksho.myfirstplugin.MyPlugin;
+import me.faksho.pandoraProject.MyPlugin;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-public class EntitySpawnEvents implements Listener {
+public class HBaseSpawnEvent implements Listener {
 
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent e) {
@@ -73,15 +73,15 @@ public class EntitySpawnEvents implements Listener {
                 if(!config.getBoolean("entity.spawn.brute.speed.enable")) break;
 
                 ((LivingEntity) entity)
-                    .addPotionEffect(
-                        new PotionEffect(
-                            PotionEffectType.SPEED,
-                            PotionEffect.INFINITE_DURATION,
-                            config.getInt("entity.spawn.brute.speed.amplifier")
-                        )
-                );
+                        .addPotionEffect(
+                                new PotionEffect(
+                                        PotionEffectType.SPEED,
+                                        PotionEffect.INFINITE_DURATION,
+                                        config.getInt("entity.spawn.brute.speed.amplifier")
+                                )
+                        );
 
-            break;
+                break;
 
             // --------------------------------------------------------------------------- //
 

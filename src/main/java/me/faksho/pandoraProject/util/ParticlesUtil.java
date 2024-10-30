@@ -1,6 +1,6 @@
-package me.faksho.myfirstplugin.util;
+package me.faksho.pandoraProject.util;
 
-import me.faksho.myfirstplugin.MyPlugin;
+import me.faksho.pandoraProject.MyPlugin;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;

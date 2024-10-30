@@ -1,6 +1,6 @@
-package me.faksho.myfirstplugin.eventListeners;
+package me.faksho.pandoraProject.eventListeners.entities.hostile;
 
-import me.faksho.myfirstplugin.MyPlugin;
+import me.faksho.pandoraProject.MyPlugin;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;

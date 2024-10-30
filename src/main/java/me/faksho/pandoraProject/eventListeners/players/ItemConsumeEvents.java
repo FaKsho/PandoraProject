@@ -1,4 +1,4 @@
-package me.faksho.myfirstplugin.eventListeners;
+package me.faksho.pandoraProject.eventListeners.players;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

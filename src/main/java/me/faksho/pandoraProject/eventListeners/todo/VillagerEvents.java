@@ -1,4 +1,4 @@
-package me.faksho.myfirstplugin.eventListeners;
+package me.faksho.pandoraProject.eventListeners.todo;
 
 import org.bukkit.event.Listener;
 

@@ -1,13 +1,10 @@
-package me.faksho.myfirstplugin.eventListeners;
+package me.faksho.pandoraProject.eventListeners.players;
 
-import jdk.javadoc.internal.doclint.HtmlTag;
-import me.faksho.myfirstplugin.MyPlugin;
+import me.faksho.pandoraProject.MyPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

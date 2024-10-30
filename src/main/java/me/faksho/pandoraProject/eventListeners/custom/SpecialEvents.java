@@ -1,13 +1,11 @@
-package me.faksho.myfirstplugin.eventListeners;
+package me.faksho.pandoraProject.eventListeners.custom;
 
-import me.faksho.myfirstplugin.MyPlugin;
-import org.bukkit.Bukkit;
+import me.faksho.pandoraProject.MyPlugin;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
@@ -55,6 +53,7 @@ public class SpecialEvents implements Listener {
     public void onEntityTargetPlayer(EntityTargetEvent event) {
 
         Entity targetEntity = event.getTarget();
+        if(!(event.getEntity() instanceof LivingEntity)) return;
         LivingEntity entity = (LivingEntity) event.getEntity();
         EntityType entityType = entity.getType();
 

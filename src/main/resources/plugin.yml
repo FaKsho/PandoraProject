@@ -1,6 +1,6 @@
 name: MyPlugin
 version: '${project.version}'
-main: me.faksho.myfirstplugin.MyPlugin
+main: me.faksho.pandoraProject.MyPlugin
 api-version: '1.17'
 
 #TODO ver que hacer con esto xddd

@@ -1,6 +1,6 @@
-package me.faksho.myfirstplugin.eventListeners;
+package me.faksho.pandoraProject.eventListeners.custom;
 
-import me.faksho.myfirstplugin.MyPlugin;
+import me.faksho.pandoraProject.MyPlugin;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
