@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-public class HHurtEvent implements Listener {
+public class HurtEvents implements Listener {
 
 
     @EventHandler

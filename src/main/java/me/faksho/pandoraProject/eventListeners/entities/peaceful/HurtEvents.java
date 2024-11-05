@@ -17,7 +17,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Random;
 
-public class PHurtEvent implements Listener {
+public class HurtEvents implements Listener {
 
     @EventHandler
     public void onEntityDamageEntity(EntityDamageByEntityEvent e) {

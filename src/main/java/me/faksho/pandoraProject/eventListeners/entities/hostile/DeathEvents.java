@@ -10,7 +10,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.Random;
 
-public class EntityDeathEvents implements Listener {
+public class DeathEvents implements Listener {
 
     @EventHandler
     public void onPlayerKillEntity(EntityDeathEvent event) {

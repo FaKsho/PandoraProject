@@ -1,18 +1,8 @@
 package me.faksho.pandoraProject.eventListeners.entities.hostile.spawn;
 
-import me.faksho.pandoraProject.MyPlugin;
-import org.bukkit.*;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.*;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntitySpawnEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
-import java.util.Random;
-
-public class HBaseSpawnEvent implements Listener {
+public class SpecialSpawn implements Listener {
 
     /*
 
