@@ -1,4 +1,4 @@
-package me.faksho.pandoraProject.eventListeners.entities.hostile;
+package me.faksho.pandoraProject.eventListeners.entities.hostile.spawn;
 
 import me.faksho.pandoraProject.MyPlugin;
 import org.bukkit.*;
@@ -13,6 +13,8 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Random;
 
 public class HBaseSpawnEvent implements Listener {
+
+    /*
 
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent e) {
@@ -169,5 +171,7 @@ public class HBaseSpawnEvent implements Listener {
 
         }
     }
+
+     */
 }
 

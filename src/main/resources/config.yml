@@ -156,15 +156,15 @@ frozen:
     zombies:
       speed: 1.0
       jump: 1.0
-      swim: 1.0
+      swim: 1.0 # max 10
 
       health: 1.0
       def: 1.0
-      knb-res: 1.0
+      knb-res: 1.0 # max 10
 
       atk: 1.0
-      atk-spd: 1.0 # NO DISPONIBLE PARA ZOMBIES
-      atk-knb: 1.0
-      follow-range: 1.0
+      atk-spd: 1.0
+      atk-knb: 1.0 # max 5
+      follow-range: 1.0 # max 2
 
-      size: 2.0
+      size: 3.0
