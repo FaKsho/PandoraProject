@@ -22,8 +22,6 @@ public class TemperatureSpawn implements Listener {
         EntityType entityType = entity.getType();
         double blockTemp = entity.getLocation().getBlock().getTemperature();
 
-        //if(!(blockTemp <= 0.0)) return;
-
         World world = entity.getWorld();
         Server server = entity.getServer();
 
@@ -45,7 +43,5 @@ public class TemperatureSpawn implements Listener {
         }
 
         new Multipliers(entity, configPath);
-
-
     }
 }
